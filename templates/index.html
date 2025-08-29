@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hackathon Domain Selector</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen">
+
+    <div class="bg-white shadow-lg rounded-lg p-8 w-96">
+        <h1 class="text-2xl font-bold mb-6 text-center">AI Hackathon Domain Selector</h1>
+
+        <!-- Domain Form -->
+        <form method="POST" class="flex flex-col space-y-4">
+            <select name="domain" class="p-2 border rounded-lg">
+                <option value="">Select a domain</option>
+                {% for domain in domains %}
+                <option value="{{ domain }}" {% if selected_domain == domain %}selected{% endif %}>{{ domain }}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+                Generate Problem Statements
+            </button>
+        </form>
+
+        <!-- Show problems if selected -->
+        {% if problems %}
+        <div class="mt-6">
+            <h2 class="text-lg font-semibold mb-2">Problem Statements:</h2>
+            <ul class="list-disc pl-6">
+                {% for problem in problems %}
+                <li class="mb-1">{{ problem }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
